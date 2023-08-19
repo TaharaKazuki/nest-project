@@ -22,14 +22,13 @@ export class EventController {
   ) {}
 
   @Get()
-  findAll() {
-    return this.events;
+  async findAll() {
+    return await this.repository.find();
   }
 
   @Get(':id')
-  findOne(@Param('id') id) {
-    const event = this.events.find((event) => event.id === parseInt(id));
-    return event;
+  async findOne(@Param('id') id) {
+    return await this.repository.findOne(id);
   }
 
   @Post()
